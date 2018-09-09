@@ -1,0 +1,7 @@
+{
+    "name": "dudzik/tube",
+    "type": "project",
+    "require": {
+        "google/apiclient": "^2.2"
+    }
+}
