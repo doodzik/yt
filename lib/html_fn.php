@@ -13,6 +13,20 @@
             </html>";
   }
 
+  function style($styles) {
+    $content = '';
+    foreach ($styles as $selector => $rules) {
+      $rule_body = '';
+      foreach ($rules as $rule => $rule_value) {
+        $rule_body .= "$rule:$rule_value;";
+      }
+      $rule_body = substr($rule_body, 0, -1);
+      $content .= $selector. '{' . $rule_body .'}';
+      $rule_body = '';
+    }
+    return "<style>$content</style>";
+  }
+
   function title ($name) {
     return "<title>$name</title>";
   }
@@ -79,7 +93,7 @@
   function input_err ($error, $name) {
     if(isset($error[$name])) {
       $err_val = $error[$name];
-      return lable($err_val, 'error');
+      return lable($err_val, 'error') . br();
     }
 
     return '';

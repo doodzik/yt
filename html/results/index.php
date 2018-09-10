@@ -11,7 +11,9 @@ function query_results($title, $query_results) {
   if(count($query_results) > 0) {
     $content = '';
     foreach ($query_results as $query_result) {
-      $content .= video_elment($query_result['video_url'], $query_result['title'], $query_result['thumbnail']);
+      $content .= video_elment($query_result['video_url'],
+                               $query_result['title'],
+                               $query_result['thumbnail']);
     }
     return h3($title) . ul($content);
   } else {
@@ -31,23 +33,38 @@ if(isset($_GET['search_query'])) {
     $result = YouTube::Instance()->query($_GET['search_query']);
     if (strlen($result['error']) == 0) {
       $query_result .= div(query_results('Videos', $result['videos']) .
-                           query_results('Playlist', $result['playlists']));
+                           query_results('Playlists', $result['playlists']));
     } else {
       $query_result .= $result['error'];
     }
   }
 }
 
+$style = array(
+  'body' => array(
+    'margin'      => '40px auto',
+    'max-width'   => '650px',
+    'line-height' => '1.5',
+    'font-size'   => '18px',
+    'color'       => '#444',
+    'padding'     => '0 10px',
+    'background'  => '#eee',
+    'text-align'  => 'center',
+  ),
+  'ul' => array(
+    'padding'         => '0',
+    'list-style-type' => 'none',
+  ),
+);
+
 echo html(title('Tube') . 
-          '<link rel="stylesheet" media="all" href="https://dudzik.co/index-b76c366aa08eb55e8b2c1479f900250b.css">',
-  content(
-    h1('tube') .
-    form('get',
-      lable('Query') .
-      br() .
-      input_err($error, 'search_query') .
-      input('text', 'search_query') .
-      submit('search')
-    ) . 
-    div($query_result)));
+          style($style),
+          content(
+            h1('tube') .
+            form('get',
+              input_err($error, 'search_query') .
+              input('text', 'search_query') .
+              submit('search')
+            ) . 
+            div($query_result)));
 ?>
