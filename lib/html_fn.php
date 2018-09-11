@@ -108,7 +108,12 @@
     return $value;
   }
 
-  function input ($type, $name = '', $placeholder = '') {
+  function input ($config) {
+    $type = $config['type'];
+    $name = array_key_exists('name', $config) ? $config['name'] : '';
+    $placeholder = array_key_exists('placeholder', $config) ? $config['placeholder'] : '';
+    $autofocus = array_key_exists('autofocus', $config) ? $config['autofocus'] : false;
+
     if(strlen($name) == 0) {
       $name = $type;
     }
@@ -117,7 +122,11 @@
     }
 
     $value = get_request($name);
-    $input = "<input type=\"$type\" name=\"$name\" placeholder=\"$placeholder\" value=\"$value\"/>";
+    if ($autofocus) {
+      $input = "<input type=\"$type\" name=\"$name\" placeholder=\"$placeholder\" value=\"$value\" autofocus/>";
+    } else {
+      $input = "<input type=\"$type\" name=\"$name\" placeholder=\"$placeholder\" value=\"$value\"/>";
+    }
     return $input;
   }
 

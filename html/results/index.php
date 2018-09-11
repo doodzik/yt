@@ -57,14 +57,18 @@ $style = array(
   ),
 );
 
-echo html(title('Tube') . 
+echo html(title('Tube') .
           style($style),
           content(
             h1('tube') .
             form('get',
               input_err($error, 'search_query') .
-              input('text', 'search_query') .
+              input(array(
+                'type' => 'text',
+                'name' => 'search_query',
+                'autofocus' => strlen($query_result) > 0,
+              )) .
               submit('search')
-            ) . 
+            ) .
             div($query_result)));
 ?>
