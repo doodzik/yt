@@ -2,9 +2,8 @@
 require(__DIR__ . '/../../init.php');
 
 function video_elment($href, $title, $thumbnail) {
-  return li(a(h4($title) .
-              img($thumbnail) ,
-              $href));
+  return li(a(h4($title) . img($thumbnail),
+              array('href' => $href)));
 }
 
 function query_results($title, $query_results) {
@@ -22,7 +21,7 @@ function query_results($title, $query_results) {
 }
 
 $error = array();
-$query_result = '';
+$content = '';
 
 if(isset($_GET['search_query'])) {
   if(strlen(validate_query($_GET['search_query'])) > 0) {
@@ -32,10 +31,10 @@ if(isset($_GET['search_query'])) {
   if(count($error) == 0) {
     $result = YouTube::Instance()->query($_GET['search_query']);
     if (strlen($result['error']) == 0) {
-      $query_result .= div(query_results('Videos', $result['videos']) .
+      $content .= div(query_results('Videos', $result['videos']) .
                            query_results('Playlists', $result['playlists']));
     } else {
-      $query_result .= $result['error'];
+      $content .= $result['error'];
     }
   }
 }
@@ -55,20 +54,29 @@ $style = array(
     'padding'         => '0',
     'list-style-type' => 'none',
   ),
+  'h1 > a' => array(
+   'color'           => 'inherit',
+   'text-decoration' => 'inherit',
+  ),
 );
 
-echo html(title('Tube') .
+$autofocus = strlen($content) == 0;
+
+if(strlen($content) == 0) {
+}
+
+echo html(title('yt') .
           style($style),
           content(
-            h1('tube') .
+            h1(a('yt', array('href' => '/'))) .
             form('get',
               input_err($error, 'search_query') .
               input(array(
                 'type' => 'text',
                 'name' => 'search_query',
-                'autofocus' => strlen($query_result) > 0,
+                'autofocus' => $autofocus,
               )) .
-              submit('search')
+              submit(array('value' => 'search'))
             ) .
-            div($query_result)));
+            div($content)));
 ?>

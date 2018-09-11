@@ -67,8 +67,9 @@
     return "<h4>$content</h4>";
   }
 
-  function a ($content, $link = '#') {
-    return "<a href=\"$link\">$content</a>";
+  function a ($content, $config = array('href' => '#')) {
+    $href = $config['href']; 
+    return "<a href=\"$href\">$content</a>";
   }
 
   function img ($src) {
@@ -153,7 +154,9 @@
     return "<input type=\"hidden\" name=\"$field\" value=\"$value\">";
   }
 
-  function submit ($value = 'Submit', $name=false) {
+  function submit ($config) {
+    $value = array_key_exists('value', $config) ? $config['value'] : 'Submit';
+    $name = array_key_exists('name', $config) ? $config['name'] : false;
     if (!$name) {
       return "<input type=\"submit\" value=\"$value\">";
     } else {

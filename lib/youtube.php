@@ -10,6 +10,14 @@ final class YouTube {
         return $inst;
     }
 
+    public static function video_url($id) {
+      return "https://www.youtube.com/embed/$id?modestbranding=1&amp;rel=0";
+    }
+
+    public static function playlist_url($id) {
+      return "https://www.youtube.com/embed/videoseries?list=$id&amp;modestbranding=1&amp;rel=0";
+    }
+
     private function __construct(){
       $DEVELOPER_KEY = getenv('GOOGLE_DEV_KEY');
       $google_client = new Google_Client();
@@ -31,13 +39,13 @@ final class YouTube {
             if ($searchResult['id']['kind'] == 'youtube#video') {
               $id = $searchResult['id']['videoId'];
               array_push($query_result['videos'], array(
-                'video_url' => "https://www.youtube.com/embed/$id?modestbranding=1&amp;rel=0",
+                'video_url' => YouTube::video_url($id),
                 'thumbnail' => $thumbnail,
                 'title' => $title));
             } else if ($searchResult['id']['kind'] == 'youtube#playlist') {
               $id = $searchResult['id']['playlistId'];
               array_push($query_result['playlists'], array(
-                'video_url' => "https://www.youtube.com/embed/videoseries?list=$id&amp;modestbranding=1&amp;rel=0",
+                'video_url' => YouTube::playlist_url($id),
                 'thumbnail' => $thumbnail,
                 'title' => $title));
             }
