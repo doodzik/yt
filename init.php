@@ -1,6 +1,6 @@
 <?php
 
-/* require __DIR__ . '/../env.php'; */
+require __DIR__ . '/../env.php';
 
 function is_production() {
   return getenv("PRODUCTION") == true;

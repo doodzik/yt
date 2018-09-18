@@ -73,15 +73,14 @@ if(!isset($_GET['search_query']) && strlen($content) == 0 && !isset($_GET['h']))
 
 $homeLink = isset($_GET['h']) ? '/?h=' : '/';
 
-// TODO add keywords and description
 echo html(array(
       'head' =>
         title('yt') .
         style($style) .
         meta(array('charset' => "utf-8")) .
         meta(array('name' => "robots", 'content' => "index,follow")) .
-        meta(array('name' => "keywords", 'content' => '')) .
-        meta(array('name' => "description", 'content' => '')) .
+        meta(array('name' => "keywords", 'content' => 'minimalist youtube, distraction-free youtube, minimal youtube, show only video youtube')) .
+        meta(array('name' => "description", 'content' => "yt is a distraction-free youtube client. It is open source and doesn't collect any data on you. You can remove most distractions from a video by changing the location of its URL to 'yt.dudzik.co'. For example, 'http://youtube.com/watch?v=xxx' becomes 'http://yt.dudzik.co/watch?v=xxx'.")) .
         meta(array('name' => "author", 'content' => 'Frederik Dudzik - dudzik.co')) .
         meta(array('name' => "viewport", 'content' => 'width=device-width, initial-scale=1')),
       'body' =>
