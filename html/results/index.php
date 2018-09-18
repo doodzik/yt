@@ -62,21 +62,38 @@ $style = array(
 
 $autofocus = strlen($content) == 0;
 
-if(strlen($content) == 0) {
+if(!isset($_GET['search_query']) && strlen($content) == 0 && !isset($_GET['h'])) {
+  $open_source = a('open source', array('href' => 'https://github.com/doodzik/yt'));
+  $through_my_website = a('through my website', array('href' => 'https://dudzik.co'));
+  $website_blocker = a('website blocker', array('href' => 'https://dudzik.co/about:blank/'));
+  $hide_this_noise = a('hide this noise', array('href' => '/?h='));
+
+  $content = p("") . $hide_this_noise . p ("yt is a distraction-free youtube client. It is $open_source and doesn't collect any data on you. You can remove most distractions from a video by changing the location of its URL to 'yt.dudzik.co'. For example, 'http://youtube.com/watch?v=xxx' becomes 'http://yt.dudzik.co/watch?v=xxx'. If you like yt you might like this $website_blocker I've built for Safari on iOS/macOS. You can reach out to me $through_my_website.");
 }
 
-echo html(title('yt') .
-          style($style),
-          content(
-            h1(a('yt', array('href' => '/'))) .
-            form('get',
-              input_err($error, 'search_query') .
-              input(array(
-                'type' => 'text',
-                'name' => 'search_query',
-                'autofocus' => $autofocus,
-              )) .
-              submit(array('value' => 'search'))
-            ) .
-            div($content)));
+$homeLink = isset($_GET['h']) ? '/?h=' : '/';
+
+echo html(array(
+      'head' =>
+        title('yt') .
+        style($style) .
+        meta(array('charset' => "utf-8")) .
+        meta(array('name' => "robots", 'content' => "index,follow")) .
+        meta(array('name' => "keywords", 'content' => '')) .
+        meta(array('name' => "description", 'content' => '')) .
+        meta(array('name' => "author", 'content' => 'Frederik Dudzik - dudzik.co')) .
+        meta(array('name' => "viewport", 'content' => 'width=device-width, initial-scale=1')),
+      'body' =>
+        content(
+          h1(a('yt', array('href' => $homeLink))) .
+          form('get',
+            input_err($error, 'search_query') .
+            input(array(
+              'type' => 'text',
+              'name' => 'search_query',
+              'autofocus' => $autofocus,
+            )) .
+            submit(array('value' => 'search'))
+          ) .
+          div($content))));
 ?>

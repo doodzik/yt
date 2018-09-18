@@ -1,6 +1,6 @@
 # yt
 
-yt is a distraction-less youtube client.
+[yt](http://yt.dudzik.co) is a distraction-free youtube client.
 
 # Installation
 

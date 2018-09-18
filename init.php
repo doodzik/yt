@@ -1,9 +1,9 @@
 <?php
 
-require __DIR__ . '/../env.php';
+/* require __DIR__ . '/../env.php'; */
 
 function is_production() {
-  return getenv("PRODUCTION") !== false;
+  return getenv("PRODUCTION") == true;
 }
 
 if(!is_production()) {

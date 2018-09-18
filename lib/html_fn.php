@@ -1,7 +1,9 @@
 <?php
   require 'validators.php';
 
-  function html($head, $body) {
+  function html($config) {
+    $head = $config['head'];
+    $body = $config['body'];
     return "<!DOCTYPE html>
             <html>
               <head>
@@ -11,6 +13,14 @@
                 $body
               </body>
             </html>";
+  }
+
+  function meta($config) {
+    $meta = "<meta";
+    foreach ($config as $key => $value) {
+      $meta .= " $key=\"$value\"";
+    }
+    return $meta . '>';
   }
 
   function style($styles) {
