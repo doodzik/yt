@@ -14,8 +14,12 @@ final class YouTube {
       return "https://www.youtube.com/embed/$id?modestbranding=1&amp;rel=0";
     }
 
-    public static function playlist_url($id) {
-      return "https://www.youtube.com/embed/videoseries?list=$id&amp;modestbranding=1&amp;rel=0";
+    public static function playlist_url($id, $video_id = '') {
+      if (strlen($video_id) == 0) {
+        return "https://www.youtube.com/embed/videoseries?list=$id&amp;modestbranding=1&amp;rel=0";
+      } else {
+        return "https://www.youtube.com/embed/videoseries?list=$id&amp;modestbranding=1&amp;rel=0&amp;v=1nzx7O7ndfI";
+      }
     }
 
     private function __construct(){
@@ -23,6 +27,26 @@ final class YouTube {
       $google_client = new Google_Client();
       $google_client->setDeveloperKey($DEVELOPER_KEY);
       $this->youtube = new Google_Service_YouTube($google_client);
+    }
+
+    function videosList($part, $params) {
+        $params = array_filter($params);
+        return $this->youtube->videos->listVideos($part, $params);
+    }
+
+    function playlistsList($part, $params) {
+        $params = array_filter($params);
+        return $this->youtube->playlists->listPlaylists($part, $params);
+    }
+
+    function titleForPlaylist($id) {
+      $response = $this->playlistsList('snippet', array('id' => $id));
+      return $response['items'][0]['snippet']['title'];
+    }
+
+    function titleForVideo($id) {
+      $response = $this->videosList('snippet', array('id' => $id));
+      return $response['items'][0]['snippet']['title'];
     }
 
     function query($query) {

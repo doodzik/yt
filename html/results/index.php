@@ -73,6 +73,7 @@ if(!isset($_GET['search_query']) && strlen($content) == 0 && !isset($_GET['h']))
 
 $homeLink = isset($_GET['h']) ? '/?h=' : '/';
 
+// TODO add keywords and description
 echo html(array(
       'head' =>
         title('yt') .
