@@ -36,6 +36,7 @@ echo html(array(
       'head' =>
         title($title) .
         style($style) .
+        link2(array('href' => "/favicon.ico", 'type' => "image/x-icon", 'rel' => "icon")) .
         meta(array('charset' => "utf-8")) .
         meta(array('name' => "robots", 'content' => "nofollow")) .
         meta(array('name' => "author", 'content' => 'Frederik Dudzik - dudzik.co')) .

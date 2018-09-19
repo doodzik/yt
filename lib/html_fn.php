@@ -15,6 +15,14 @@
             </html>";
   }
 
+  function link2($config) {
+    $link = "<link";
+    foreach ($config as $key => $value) {
+      $link .= " $key=\"$value\"";
+    }
+    return $link . '>';
+  }
+
   function meta($config) {
     $meta = "<meta";
     foreach ($config as $key => $value) {
@@ -39,6 +47,10 @@
 
   function title ($name) {
     return "<title>$name</title>";
+  }
+
+  function i ($content) {
+    return "<i>$content</i>";
   }
 
   function content ($content) {
