@@ -190,4 +190,9 @@
     return "<nav>$content</nav>";
   }
 
+  function iframe ($config) {
+    $src = $config['src'];
+    return "<iframe src=\"$src\"></iframe>";
+  }
+
 ?>

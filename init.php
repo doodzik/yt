@@ -3,8 +3,6 @@
 require __DIR__ . '/../env.php';
 
 if(getenv("PRODUCTION") == 'true') {
-  print_r(gettype(getenv("PRODUCTION")));
-  print_r(getenv("PRODUCTION"));
   if (!file_exists(__DIR__ . '/../vendor/autoload.php')) {
     throw new \Exception('please run "composer install" in parent dir ' . __DIR__);
   }

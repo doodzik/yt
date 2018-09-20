@@ -2,7 +2,7 @@
 require(__DIR__ . '/../../init.php');
 
 function video_elment($href, $title, $thumbnail) {
-  return li(a(h4($title) . img($thumbnail),
+  return li(a(img($thumbnail) . h4($title),
               array('href' => $href)));
 }
 
@@ -53,6 +53,9 @@ $style = array(
   'ul' => array(
     'padding'         => '0',
     'list-style-type' => 'none',
+  ),
+  'li' => array(
+    'padding-bottom' => '30px',
   ),
   'h1 > a' => array(
    'color'           => 'inherit',
