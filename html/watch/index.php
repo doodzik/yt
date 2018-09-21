@@ -8,7 +8,7 @@ if(isset($_GET['list']) && empty($_GET['v'])) {
   $url = YouTube::playlist_url($_GET['list'], $_GET['v']);
   $title = YouTube::Instance()->titleForPlaylist($_GET['list']);
 } else if(isset($_GET['v'])) {
-  $url = YouTube::video_url($_GET['v']);
+  $url = YouTube::video_url($_GET['v'], isset($_GET['loop']));
   $title = YouTube::Instance()->titleForVideo($_GET['v']);
 } else {
   echo 'please provide the v or/and list query parameter to watch a video';

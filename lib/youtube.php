@@ -20,8 +20,12 @@ final class YouTube {
       return "$website/watch?v=$id";
     }
 
-    public static function video_url($id) {
-      return "https://www.youtube.com/embed/$id?modestbranding=1&amp;rel=0&amp;iv_load_policy=3";
+    public static function video_url($id, $loop = false) {
+      if ($loop) {
+        return "https://www.youtube.com/embed/$id?modestbranding=1&amp;rel=0&amp;iv_load_policy=3&amp;loop=1&amp;playlist=$id";
+      } else {
+        return "https://www.youtube.com/embed/$id?modestbranding=1&amp;rel=0&amp;iv_load_policy=3";
+      }
     }
 
     public static function playlist_url($id, $video_id = '') {
