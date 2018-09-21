@@ -21,14 +21,14 @@ final class YouTube {
     }
 
     public static function video_url($id) {
-      return "https://www.youtube.com/embed/$id?modestbranding=1&amp;rel=0";
+      return "https://www.youtube.com/embed/$id?modestbranding=1&amp;rel=0&amp;iv_load_policy=3";
     }
 
     public static function playlist_url($id, $video_id = '') {
       if (strlen($video_id) == 0) {
-        return "https://www.youtube.com/embed/videoseries?list=$id&amp;modestbranding=1&amp;rel=0";
+        return "https://www.youtube.com/embed/videoseries?list=$id&amp;modestbranding=1&amp;rel=0&amp;iv_load_policy=3";
       } else {
-        return "https://www.youtube.com/embed/videoseries?list=$id&amp;modestbranding=1&amp;rel=0&amp;v=1nzx7O7ndfI";
+        return "https://www.youtube.com/embed/videoseries?list=$id&amp;modestbranding=1&amp;rel=0&amp;v=$video_id&amp;iv_load_policy=3";
       }
     }
 
