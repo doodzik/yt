@@ -77,7 +77,7 @@ if(!isset($_GET['search_query']) && strlen($content) == 0 && !isset($_GET['h']))
   $website_blocker = a('website blocker', array('href' => 'https://dudzik.co/about:blank/'));
   $hide_this_noise = a('hide this noise', array('href' => '/?h='));
 
-  $content = p("") . $hide_this_noise . p ("yt is a distraction-free youtube client. It is $open_source and doesn't collect any data on you. You can remove most distractions from a video by changing the location of its URL to " . i('yt.dudzik.co') . ". For example, " . i('http://youtube.com/watch?v=xxx') . " becomes " . i('http://yt.dudzik.co/watch?v=xxx') . ". You can also loop a video indefinitely by adding " . i('&loop=') . " to the end of a video URL " . i('http://youtube.com/watch?v=xxx&loop=') . ". If you like yt you might like this $website_blocker I've built for Safari on iOS/macOS. You can reach out to me $through_my_website.");
+  $content = p("") . $hide_this_noise . p ("yt is a distraction-free youtube client. It is $open_source and doesn't collect any data on you. You can remove most distractions from a video by changing the location of its URL to " . i('yt.dudzik.co') . ". For example, " . i('http://youtube.com/watch?v=xxx') . " becomes " . i('http://yt.dudzik.co/watch?v=xxx') . ". You can also loop a video indefinitely by adding " . i('&loop=') . " to the end of a video URL " . i('http://yt.dudzik.co/watch?v=xxx&loop=') . ". If you like yt you might like this $website_blocker I've built for Safari on iOS/macOS. You can reach out to me $through_my_website.");
 }
 
 $homeLink = isset($_GET['h']) ? '/?h=' : '/';

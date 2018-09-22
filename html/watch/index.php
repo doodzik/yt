@@ -42,6 +42,6 @@ echo html(array(
         meta(array('name' => "author", 'content' => 'Frederik Dudzik - dudzik.co')) .
         meta(array('name' => "viewport", 'content' => 'width=device-width, initial-scale=1')),
       'body' =>
-        iframe(array('src' => $url))
+        iframe(array('src' => $url, 'allowfullscreen' => 'allowfullscreen', 'frameborder' => 0))
       ));
 ?>

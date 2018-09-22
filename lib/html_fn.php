@@ -192,7 +192,11 @@
 
   function iframe ($config) {
     $src = $config['src'];
-    return "<iframe src=\"$src\"></iframe>";
+    $values = '';
+    $values = array_key_exists('src', $config) ? $values . ' src="' . $config['src'] . '"' : $values;
+    $values = array_key_exists('frameborder', $config) ? $values . ' frameborder="' . $config['frameborder'] . '"' : $values;
+    $values = array_key_exists('allowfullscreen', $config) ? $values . ' allowfullscreen="' . $config['allowfullscreen'] . '"' : $values;
+    return "<iframe $values></iframe>";
   }
 
 ?>
