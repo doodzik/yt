@@ -61,6 +61,12 @@ $style = array(
    'color'           => 'inherit',
    'text-decoration' => 'inherit',
   ),
+  'input[name="h"]' => array(
+    'display' => 'none',
+  ),
+  'input' => array(
+    'font-size' => '16px',
+  ),
 );
 
 $autofocus = strlen($content) == 0;
@@ -75,6 +81,7 @@ if(!isset($_GET['search_query']) && strlen($content) == 0 && !isset($_GET['h']))
 }
 
 $homeLink = isset($_GET['h']) ? '/?h=' : '/';
+$hideNoise = isset($_GET['h']) ? input(array('type' => 'text', 'name' => 'h')) : '';
 
 echo html(array(
       'head' =>
@@ -92,6 +99,7 @@ echo html(array(
           h1(a('yt', array('href' => $homeLink))) .
           form('get',
             input_err($error, 'search_query') .
+            $hideNoise .
             input(array(
               'type' => 'text',
               'name' => 'search_query',
