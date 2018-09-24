@@ -16,6 +16,10 @@ if(isset($_GET['list']) && empty($_GET['v'])) {
   die();
 }
 
+$width = array_key_exists('video_width', $_SESSION) ? $_SESSION['video_width'] : '100%';
+$height = array_key_exists('video_height', $_SESSION) ? $_SESSION['video_height'] : '100%';
+$margin = array_key_exists('video_margin', $_SESSION) ? $_SESSION['video_margin'] : '0';
+
 $style = array(
   'body' => array(
     'width' => '100vw',
@@ -24,9 +28,9 @@ $style = array(
     'padding' => 0,
   ),
   'iframe' => array(
-    'width' => '100%',
-    'height' => '100%',
-    'margin' => 0,
+    'width' => $width,
+    'height' => $height,
+    'margin' => $margin,
     'padding' => 0,
     'border' =>  0,
   ),

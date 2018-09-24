@@ -136,6 +136,7 @@
     $name = array_key_exists('name', $config) ? $config['name'] : '';
     $placeholder = array_key_exists('placeholder', $config) ? $config['placeholder'] : '';
     $autofocus = array_key_exists('autofocus', $config) ? $config['autofocus'] : false;
+    $value = array_key_exists('value', $config) ? $config['value'] : get_request($name);
 
     if(strlen($name) == 0) {
       $name = $type;
@@ -144,7 +145,6 @@
       $placeholder = str_replace("_"," ",$name);
     }
 
-    $value = get_request($name);
     if ($autofocus) {
       $input = "<input type=\"$type\" name=\"$name\" placeholder=\"$placeholder\" value=\"$value\" autofocus/>";
     } else {
@@ -178,11 +178,11 @@
 
   function submit ($config) {
     $value = array_key_exists('value', $config) ? $config['value'] : 'Submit';
-    $name = array_key_exists('name', $config) ? $config['name'] : false;
-    if (!$name) {
+    $name = array_key_exists('name', $config) ? $config['name'] : '';
+    if (strlen($name) == 0) {
       return "<input type=\"submit\" value=\"$value\">";
     } else {
-      return "<input type=\"submit\" name=\"submit\" value=\"$value\">";
+      return "<input type=\"submit\" name=\"$name\" value=\"$value\">";
     }
   }
 

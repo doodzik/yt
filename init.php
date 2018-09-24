@@ -1,4 +1,6 @@
 <?php
+ini_set('session.cookie_httponly', true);
+session_start();
 
 require __DIR__ . '/../env.php';
 
