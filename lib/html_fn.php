@@ -57,7 +57,7 @@
     return "<div id=\"content\">$content</div>";
   }
 
-  function div ($content, $config) {
+  function div ($content, $config = array()) {
     $values = '';
     $values = array_key_exists('class', $config) ? $values . 'class="' . $config['class'] .'"' : '';
 

@@ -28,15 +28,15 @@ echo html(array(
           form('post',
             lable('Player size: ') .
             select(
-              option("Fill Screen", array(
-                "value" => "fill",
-                'selected' => playerSize() == 'fill')).
               option("Classic YouTube", array(
                 'value' => "classic",
                 'selected' => playerSize() == 'classic')).
               option("Theater Mode", array(
                 'value' => "theater",
-                'selected' => playerSize() == 'theater')),
+                'selected' => playerSize() == 'theater')).
+              option("Fill Screen", array(
+                "value" => "fill",
+                'selected' => playerSize() == 'fill')),
               array("name" => "playerSize")
             ) . br() .
             lable('Hide noise: ') .
