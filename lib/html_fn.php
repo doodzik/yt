@@ -101,12 +101,9 @@
     return "<img src='$src' />";
   }
 
-  function form ($request, $content) {
-    // automatically sets the filename as the action path
-    $backtrace = debug_backtrace();
-    $str  = $backtrace[0]['file'];
-    $path = substr(strstr($str, 'html/'), 4);
-    $path = str_replace('/index.php', '', $path);
+  function form ($content, $config = array()) {
+    $request = array_key_exists('request', $config) ? $config['request'] : 'post';
+    $path = array_key_exists('path', $config) ? $config['path'] : '';
     return "<form action=\"$path\" method=\"$request\">$content</form>";
   }
 

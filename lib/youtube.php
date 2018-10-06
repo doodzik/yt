@@ -11,13 +11,11 @@ final class YouTube {
     }
 
     public static function playlist_link($id) {
-        $website = getenv('WEBSITE');
-        return "$website/watch?list=$id";
+        return "../watch?list=$id";
       }
     
     public static function video_link($id) {
-      $website = getenv('WEBSITE');
-      return "$website/watch?v=$id";
+      return "../watch?v=$id";
     }
 
     public static function video_url($id, $loop = false) {

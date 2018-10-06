@@ -18,7 +18,6 @@ By default, the `init.php` script will look for an `env.php` file in its parent 
 <?php
 putenv('PRODUCTION=false');
 putenv('GOOGLE_DEV_KEY=');
-putenv('WEBSITE=http://localhost:8000');
 ?>
 ```
 

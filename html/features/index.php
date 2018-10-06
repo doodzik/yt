@@ -14,10 +14,11 @@ echo html(array(
         meta(array('name' => "viewport", 'content' => 'width=device-width, initial-scale=1')),
       'body' =>
         content(
-          h1(a('yt', array('href' => '/'))) .
+          h1(a('yt', array('href' => '../'))) .
           h2('hidden features') .
           div(
             p("You can remove most distractions from a video or playlist by changing the location of its URL to " . i('yt.dudzik.co') . ". For example, " . i('http://youtube.com/watch?v=xxx') . " becomes " . i('http://yt.dudzik.co/watch?v=xxx')) .
-            p("You can also loop a video indefinitely by adding " . i('&loop=') . " to the end of a video URL " . i('http://yt.dudzik.co/watch?v=xxx&loop='))
+            p("You can also loop a video indefinitely by adding " . i('&loop=') . " to the end of a video URL " . i('http://yt.dudzik.co/watch?v=xxx&loop=')) .
+            p("If you prefer using yt with https enabled you can browse it through " . a('https://dudzik.co/project/yt/', array('href' => 'https://dudzik.co/project/yt/')) . " otherwise you can use " . a('http://yt.dudzik.co', array('href' => 'http://yt.dudzik.co')))
             ))));
 ?>

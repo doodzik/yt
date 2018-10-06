@@ -22,10 +22,10 @@ echo html(array(
         meta(array('name' => "viewport", 'content' => 'width=device-width, initial-scale=1')),
       'body' =>
         content(
-          h1(a('yt', array('href' => '/'))) .
+          h1(a('yt', array('href' => '../'))) .
           h2('settings') .
           p('This website uses cookies to save your settings.') .
-          form('post',
+          form(
             lable('Player size: ') .
             select(
               option("Classic YouTube", array(

@@ -50,7 +50,7 @@ $style['li'] = array(
 $autofocus = strlen($content) == 0;
 
 if(!isset($_GET['search_query']) && strlen($content) == 0) {
-  $settings = a('settings', array('href' => '/settings'));
+  $settings = a('settings', array('href' => './settings'));
   $content = p('') . $settings;
   if (hideNoise()) {
 
@@ -58,7 +58,7 @@ if(!isset($_GET['search_query']) && strlen($content) == 0) {
     $open_source = a('open source', array('href' => 'https://github.com/doodzik/yt'));
     $Ive = a("I've", array('href' => 'https://dudzik.co'));
     $website_blocker = a('website blocker', array('href' => 'https://dudzik.co/about:blank/'));
-    $hidden_features = a('hidden features', array('href' => '/features'));
+    $hidden_features = a('hidden features', array('href' => './features'));
 
     $content .= p("yt is an distraction-free youtube client. It is $open_source and doesn't collect your data. It has a couple of $hidden_features and if you like yt you might find this $website_blocker $Ive built for Safari on iOS and macOS useful as well.");
   }
@@ -77,15 +77,15 @@ echo html(array(
         meta(array('name' => "viewport", 'content' => 'width=device-width, initial-scale=1')),
       'body' =>
         content(
-          h1(a('yt', array('href' => '/'))) .
-          form('get',
-            input_err($error, 'search_query') .
-            input(array(
-              'type' => 'text',
-              'name' => 'search_query',
-              'autofocus' => $autofocus,
-            )) .
-            submit(array('value' => 'search'))
+          h1(a('yt', array('href' => './'))) .
+          form(input_err($error, 'search_query') .
+               input(array(
+                 'type' => 'text',
+                 'name' => 'search_query',
+                 'autofocus' => $autofocus,
+               )) .
+              submit(array('value' => 'search')),
+              array('request' => 'get')
           ) .
           div($content))));
 ?>
