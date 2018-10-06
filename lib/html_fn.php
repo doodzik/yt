@@ -57,8 +57,11 @@
     return "<div id=\"content\">$content</div>";
   }
 
-  function div ($content) {
-    return "<div>$content</div>";
+  function div ($content, $config) {
+    $values = '';
+    $values = array_key_exists('class', $config) ? $values . 'class="' . $config['class'] .'"' : '';
+
+    return "<div $values>$content</div>";
   }
 
   function p ($content) {
@@ -153,11 +156,27 @@
     return $input;
   }
 
+  function select ($content, $config) {
+    $name = $config['name'];
+    return "<select name='$name'>$content</select>";
+  }
+
+  function option ($content, $config) {
+    $values = '';
+    $value = $config['value'];
+    $values = "$values value='$value'";
+    $selected = array_key_exists('selected', $config) ? $config['selected'] : false;
+    $values = ($selected) ? $values . ' selected="selected"' : $values;
+    return "<option $values>$content</option>";
+  }
+
   function br () {
     return '</br>';
   }
 
-  function checkbox ($name, $checked = true) {
+  function checkbox ($config) {
+    $name = $config['name'];
+    $checked = array_key_exists('checked', $config) ? $config['checked'] : false;
     $checked = ($checked) ? 'checked' : '';
     return "<input type=\"checkbox\" name=\"$name\" $checked/>";
   }

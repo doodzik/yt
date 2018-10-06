@@ -16,9 +16,58 @@ if(isset($_GET['list']) && empty($_GET['v'])) {
   die();
 }
 
-$width = array_key_exists('video_width', $_SESSION) ? $_SESSION['video_width'] : '100%';
-$height = array_key_exists('video_height', $_SESSION) ? $_SESSION['video_height'] : '100%';
-$margin = array_key_exists('video_margin', $_SESSION) ? $_SESSION['video_margin'] : '0';
+if (playerSize() == 'fill') {
+  $player = array(
+    'width' => '100%',
+    'height' => '100%',
+    'margin' => 0,
+    'padding' => 0,
+    'border' =>  0,
+  );
+
+  $container = array(
+    'width' => '100vw',
+    'height' => '100vh',
+  );
+} else if (playerSize() == 'theater') {
+  $player = array(
+    'position' => 'absolute',
+    'top' => '0',
+    'left' => 0,
+    'width' => '100%',
+    'height' => '100%',
+    'max-height' => '85vh',
+  );
+
+  $container = array(
+    'position' => 'relative',
+    'padding-bottom' => '56.25%',
+    'padding-top' => '30px',
+    'height' => '0',
+    'overflow' => 'hidden',
+  );
+} else {
+  // classic
+  $player = array(
+    'position' => 'absolute',
+    'top' => '0',
+    'left' => 0,
+    'width' => '100%',
+    'height' => '100%',
+    'max-height' => '535px',
+  );
+
+  $container = array(
+    'position' => 'relative',
+    'padding-bottom' => '56.25%',
+    'padding-top' => '30px',
+    'height' => '0',
+    'overflow' => 'hidden',
+    'margin' => '24px',
+    'max-width' => '950px',
+    'max-height' => '535px',
+  );
+}
 
 $style = array(
   'body' => array(
@@ -27,13 +76,8 @@ $style = array(
     'margin' => 0,
     'padding' => 0,
   ),
-  'iframe' => array(
-    'width' => $width,
-    'height' => $height,
-    'margin' => $margin,
-    'padding' => 0,
-    'border' =>  0,
-  ),
+  'iframe' => $player,
+  '.container' => $container,
 );
 
 echo html(array(
@@ -46,6 +90,9 @@ echo html(array(
         meta(array('name' => "author", 'content' => 'Frederik Dudzik - dudzik.co')) .
         meta(array('name' => "viewport", 'content' => 'width=device-width, initial-scale=1')),
       'body' =>
-        iframe(array('src' => $url, 'allowfullscreen' => 'allowfullscreen', 'frameborder' => 0))
-      ));
+      div(iframe(array(
+          'src' => $url,
+          'allowfullscreen' => 'allowfullscreen',
+          'frameborder' => 0)
+        ), array('class' => 'container'))));
 ?>

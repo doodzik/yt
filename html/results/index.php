@@ -39,50 +39,30 @@ if(isset($_GET['search_query'])) {
   }
 }
 
-$style = array(
-  'body' => array(
-    'margin'      => '40px auto',
-    'max-width'   => '650px',
-    'line-height' => '1.5',
-    'font-size'   => '18px',
-    'color'       => '#444',
-    'padding'     => '0 10px',
-    'background'  => '#eee',
-    'text-align'  => 'center',
-  ),
-  'ul' => array(
-    'padding'         => '0',
-    'list-style-type' => 'none',
-  ),
-  'li' => array(
-    'padding-bottom' => '30px',
-  ),
-  'h1 > a' => array(
-   'color'           => 'inherit',
-   'text-decoration' => 'inherit',
-  ),
-  'input[name="h"]' => array(
-    'display' => 'none',
-  ),
-  'input' => array(
-    'font-size' => '16px',
-  ),
+$style['ul'] = array(
+  'padding'         => '0',
+  'list-style-type' => 'none',
+);
+$style['li'] = array(
+  'padding-bottom' => '30px',
 );
 
 $autofocus = strlen($content) == 0;
 
-if(!isset($_GET['search_query']) && strlen($content) == 0 && !isset($_GET['h'])) {
-  $open_source = a('open source', array('href' => 'https://github.com/doodzik/yt'));
-  $through_my_website = a('through my website', array('href' => 'https://dudzik.co'));
-  $website_blocker = a('website blocker', array('href' => 'https://dudzik.co/about:blank/'));
-  $hide_this_noise = a('hide this noise', array('href' => '/?h='));
+if(!isset($_GET['search_query']) && strlen($content) == 0) {
   $settings = a('settings', array('href' => '/settings'));
+  $content = p('') . $settings;
+  if (hideNoise()) {
 
-  $content = p("") . $hide_this_noise . p ("yt is a distraction-free youtube client. It is $open_source and doesn't collect any data on you. You can remove most distractions from a video by changing the location of its URL to " . i('yt.dudzik.co') . ". For example, " . i('http://youtube.com/watch?v=xxx') . " becomes " . i('http://yt.dudzik.co/watch?v=xxx') . ". You can also loop a video indefinitely by adding " . i('&loop=') . " to the end of a video URL " . i('http://yt.dudzik.co/watch?v=xxx&loop=') . ". You can also change the size of the video player in the $settings. If you like yt you might like this $website_blocker I've built for Safari on iOS/macOS. You can reach out to me $through_my_website.");
+  } else {
+    $open_source = a('open source', array('href' => 'https://github.com/doodzik/yt'));
+    $Ive = a("I've", array('href' => 'https://dudzik.co'));
+    $website_blocker = a('website blocker', array('href' => 'https://dudzik.co/about:blank/'));
+    $hidden_features = a('hidden features', array('href' => '/features'));
+
+    $content .= p("yt is an distraction-free youtube client. It is $open_source and doesn't collect your data. It has a couple of $hidden_features and if you like yt you might find this $website_blocker $Ive built for Safari on iOS and macOS useful as well.");
+  }
 }
-
-$homeLink = isset($_GET['h']) ? '/?h=' : '/';
-$hideNoise = isset($_GET['h']) ? input(array('type' => 'text', 'name' => 'h')) : '';
 
 echo html(array(
       'head' =>
@@ -97,10 +77,9 @@ echo html(array(
         meta(array('name' => "viewport", 'content' => 'width=device-width, initial-scale=1')),
       'body' =>
         content(
-          h1(a('yt', array('href' => $homeLink))) .
+          h1(a('yt', array('href' => '/'))) .
           form('get',
             input_err($error, 'search_query') .
-            $hideNoise .
             input(array(
               'type' => 'text',
               'name' => 'search_query',

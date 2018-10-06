@@ -1,30 +1,6 @@
 <?php
 require(__DIR__ . '/../../init.php');
 
-$style = array(
-  'body' => array(
-    'margin'      => '40px auto',
-    'max-width'   => '650px',
-    'line-height' => '1.5',
-    'font-size'   => '18px',
-    'color'       => '#444',
-    'padding'     => '0 10px',
-    'background'  => '#eee',
-    'text-align'  => 'center',
-  ),
-  'ul' => array(
-    'padding'         => '0',
-    'list-style-type' => 'none',
-  ),
-  'li' => array(
-    'padding-bottom' => '30px',
-  ),
-  'h1 > a' => array(
-   'color'           => 'inherit',
-   'text-decoration' => 'inherit',
-  ),
-);
-
 echo html(array(
       'head' =>
         title('yt - distraction-free youtube') .
@@ -41,8 +17,7 @@ echo html(array(
           h1(a('yt', array('href' => '/'))) .
           h2('hidden features') .
           div(
-            p("You can remove most distractions from a video or playlist by changing the location of its URL to " . i('yt.dudzik.co') . ". For example, " . i('http://youtube.com/watch?v=xxx') . " becomes " . i('http://yt.dudzik.co/watch?v=xxx') . ".") .
-            p("You can also loop a video indefinitely by adding " . i('&loop=') . " to the end of a video URL " . i('http://yt.dudzik.co/watch?v=xxx&loop=') . ".")
+            p("You can remove most distractions from a video or playlist by changing the location of its URL to " . i('yt.dudzik.co') . ". For example, " . i('http://youtube.com/watch?v=xxx') . " becomes " . i('http://yt.dudzik.co/watch?v=xxx')) .
+            p("You can also loop a video indefinitely by adding " . i('&loop=') . " to the end of a video URL " . i('http://yt.dudzik.co/watch?v=xxx&loop='))
             ))));
 ?>
-
