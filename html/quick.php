@@ -7,37 +7,23 @@ if(empty($_GET['data'])) {
   die();
 }
 
-function getParamFromString($string, $key) {
-  $position = strpos($string, $key);
-  if ($position === false) {
-    return false;
-  }
-
-  $ampersandPosition = strpos($string, '&', $position);
-  $position = $position + strlen($key);
-  if ($ampersandPosition === false) {
-    return substr($string, $position);
-  } else {
-    return substr($string, $position, ($ampersandPosition - $position));
-  }
-}
-
 $data = $_GET['data'];
 
-$v = getParamFromString($data, 'v=');
-$list = getParamFromString($data, 'list=');
-
-if ($v !== false && $list !== false) {
+if (isset($_GET['v']) && isset($_GET['list'])) {
+  $v = $_GET['v'];
+  $list = $_GET['list'];
   header("Location: http://$host/watch?v=$v&list=$list");
   die();
 }
 
-if ($v !== false && $list === false) {
+if (isset($_GET['v']) && empty($_GET['list'])) {
+  $v = $_GET['v'];
   header("Location: http://$host/watch?v=$v");
   die();
 }
 
-if ($v === false && $list !== false) {
+if (empty($_GET['v']) && isset($_GET['list'])) {
+  $list = $_GET['list'];
   header("Location: http://$host/watch?list=$list");
   die();
 }

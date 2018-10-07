@@ -28,7 +28,7 @@ If you want to make the quick access work from another url you will need to add 
 RewriteEngine On                                                                  
 RewriteBase /                                                                     
 RewriteCond %{HTTP_HOST} !yt.dudzik.co$ [NC]                                      
-RewriteRule ^(.*)$ http://yt.dudzik.co/quick/$1 [L,R=303]
+RewriteRule ^(.*)$ http://yt.dudzik.co/quick.php?data=$1 [B,QSA,L,R=303]  
 ```
 (Obviously, change `yt.dudzik.co` to your host name)
 
