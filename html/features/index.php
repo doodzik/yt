@@ -19,6 +19,7 @@ echo html(array(
           div(
             p("You can remove most distractions from a video or playlist by changing the location of its URL to " . i('yt.dudzik.co') . ". For example, " . i('http://youtube.com/watch?v=xxx') . " becomes " . i('http://yt.dudzik.co/watch?v=xxx')) .
             p("You can also loop a video indefinitely by adding " . i('&loop=') . " to the end of a video URL " . i('http://yt.dudzik.co/watch?v=xxx&loop=')) .
+            p("To quickly declutter a video you can prepend " . i('y.dudzik.co') ."  to a YouTube URL. Valid examples are: " . i('y.dudzik.co/http://youtube.com/watch?v=xxx&list=xxx') . br() . i('y.dudzik.co/v=xxx&ignores_params=xxx') . br() . i('y.dudzik.co/xxx')) .
             p("If you prefer using yt with https enabled you can browse it through " . a('https://dudzik.co/project/yt/', array('href' => 'https://dudzik.co/project/yt/')) . " otherwise you can use " . a('http://yt.dudzik.co', array('href' => 'http://yt.dudzik.co')))
             ))));
 ?>

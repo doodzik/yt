@@ -23,3 +23,12 @@ putenv('GOOGLE_DEV_KEY=');
 
 The init script will look for the vendor (dependencies) directory in its parent directory if you set the `PRODUCTION` environment variable to true.
 
+If you want to make the quick access work from another url you will need to add this `.htaccess` file to that website:
+```
+RewriteEngine On                                                                  
+RewriteBase /                                                                     
+RewriteCond %{HTTP_HOST} !yt.dudzik.co$ [NC]                                      
+RewriteRule ^(.*)$ http://yt.dudzik.co/quick/$1 [L,R=303]
+```
+(Obviously, change `yt.dudzik.co` to your host name)
+

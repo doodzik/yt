@@ -58,6 +58,9 @@ final class YouTube {
 
     function titleForVideo($id) {
       $response = $this->videosList('snippet', array('id' => $id));
+      if(count($response['items']) == 0) {
+        return 'no such video';
+      }
       return $response['items'][0]['snippet']['title'];
     }
 

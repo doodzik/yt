@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^/?quick/(.*?)/?$ /quick.php?data=$1 [L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /quick\.php\?data=([^\&\ ]+)
+RewriteRule ^/?quick\.php$ /quick/%1? [L,R=301]
