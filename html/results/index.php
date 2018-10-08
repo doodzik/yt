@@ -11,7 +11,7 @@ function query_results($title, $query_results) {
     $content = '';
     foreach ($query_results as $query_result) {
       $content .= video_elment($query_result['video_url'],
-                               $query_result['title'],
+                               mb_strtolower($query_result['title'],'UTF-8'),
                                $query_result['thumbnail']);
     }
     return h3($title) . ul($content);
