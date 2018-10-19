@@ -20,11 +20,11 @@ $style = array(
 );
 
 function playerSize() {
-  return array_key_exists('playerSize', $_SESSION) ? $_SESSION['playerSize'] : 'classic';
+  return array_key_exists('playerSize', $_COOKIE) ? $_COOKIE['playerSize'] : 'classic';
 }
 
 function hideNoise() {
-  return array_key_exists('hideNoise', $_SESSION) ? $_SESSION['hideNoise'] : false;
+  return array_key_exists('hideNoise', $_COOKIE) ? $_COOKIE['hideNoise'] : false;
 }
 
 ?>

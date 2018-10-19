@@ -4,8 +4,11 @@ require(__DIR__ . '/../../init.php');
 $saved = "";
 
 if (isset($_POST['save'])) {
-  $_SESSION['playerSize'] = $_POST['playerSize'];
-  $_SESSION['hideNoise'] = array_key_exists('hideNoise', $_POST);
+  $expiry = time() + (86400 * 30);
+  setcookie('playerSize', $_POST['playerSize'], $expiry, "/");
+  setcookie('hideNoise', array_key_exists('hideNoise', $_POST), $expiry, "/");
+  $_COOKIE['playerSize'] = $_POST['playerSize'];
+  $_COOKIE['hideNoise'] = array_key_exists('hideNoise', $_POST);
   $saved = p('Your settings were modified!');
 }
 
