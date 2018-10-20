@@ -48,9 +48,13 @@ $style['li'] = array(
 );
 
 $autofocus = strlen($content) == 0;
+$settings = a('settings', array('href' => './settings'));
+
+if (hideSearch()) {
+  $content = p("You disabled the search feature in $settings");
+}
 
 if(!isset($_GET['search_query']) && strlen($content) == 0) {
-  $settings = a('settings', array('href' => './settings'));
   $content = p('') . $settings;
   if (hideNoise()) {
 
@@ -83,8 +87,9 @@ echo html(array(
                  'type' => 'text',
                  'name' => 'search_query',
                  'autofocus' => $autofocus,
+                 'disabled' => hideSearch(),
                )) .
-              submit(array('value' => 'search')),
+              submit(array('value' => 'search', 'disabled' => hideSearch())),
               array('request' => 'get')
           ) .
           div($content))));

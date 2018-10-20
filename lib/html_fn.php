@@ -132,25 +132,31 @@
   }
 
   function input ($config) {
+    $values = '';
     $type = $config['type'];
-    $name = array_key_exists('name', $config) ? $config['name'] : '';
-    $placeholder = array_key_exists('placeholder', $config) ? $config['placeholder'] : '';
-    $autofocus = array_key_exists('autofocus', $config) ? $config['autofocus'] : false;
-    $value = array_key_exists('value', $config) ? $config['value'] : get_request($name);
 
+    $autofocus = array_key_exists('autofocus', $config) ? $config['autofocus'] : false;
+    $values = ($autofocus) ? $values . ' autofocus' : $values;
+
+    $disabled = array_key_exists('disabled', $config) ? $config['disabled'] : false;
+    $values = ($disabled) ? $values . ' disabled' : $values;
+
+    $name = array_key_exists('name', $config) ? $config['name'] : '';
     if(strlen($name) == 0) {
       $name = $type;
     }
+    $values = $values . ' name="' . $config['name'] . '"';
+
+    $value = array_key_exists('value', $config) ? $config['value'] : get_request($name);
+    $values = $values . "value=\"$value\"";
+
+    $placeholder = array_key_exists('placeholder', $config) ? $config['placeholder'] : '';
     if(strlen($placeholder) == 0) {
       $placeholder = str_replace("_"," ",$name);
     }
+    $values = $values . " placeholder=\"$placeholder\"";
 
-    if ($autofocus) {
-      $input = "<input type=\"$type\" name=\"$name\" placeholder=\"$placeholder\" value=\"$value\" autofocus/>";
-    } else {
-      $input = "<input type=\"$type\" name=\"$name\" placeholder=\"$placeholder\" value=\"$value\"/>";
-    }
-    return $input;
+    return "<input type=\"$type\" $values/>";
   }
 
   function select ($content, $config) {
@@ -193,13 +199,13 @@
   }
 
   function submit ($config) {
+    $values = '';
     $value = array_key_exists('value', $config) ? $config['value'] : 'Submit';
-    $name = array_key_exists('name', $config) ? $config['name'] : '';
-    if (strlen($name) == 0) {
-      return "<input type=\"submit\" value=\"$value\">";
-    } else {
-      return "<input type=\"submit\" name=\"$name\" value=\"$value\">";
-    }
+    $values = $values . "value=\"$value\"";
+    $values = array_key_exists('name', $config) ? $values . ' name="' . $config['name'] . '"' : $values;
+    $disabled = array_key_exists('disabled', $config) ? $config['disabled'] : false;
+    $values = ($disabled) ? $values . ' disabled' : $values;
+    return "<input type=\"submit\" $values>";
   }
 
   function nav ($content) {

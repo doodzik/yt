@@ -7,8 +7,10 @@ if (isset($_POST['save'])) {
   $expiry = time() + (86400 * 30);
   setcookie('playerSize', $_POST['playerSize'], $expiry, "/");
   setcookie('hideNoise', array_key_exists('hideNoise', $_POST), $expiry, "/");
+  setcookie('hideSearch', array_key_exists('hideSearch', $_POST), $expiry, "/");
   $_COOKIE['playerSize'] = $_POST['playerSize'];
   $_COOKIE['hideNoise'] = array_key_exists('hideNoise', $_POST);
+  $_COOKIE['hideSearch'] = array_key_exists('hideSearch', $_POST);
   $saved = p('Your settings were modified!');
 }
 
@@ -46,6 +48,11 @@ echo html(array(
             checkbox(array(
               'name' => 'hideNoise',
               'checked' => hideNoise(),
+            )) . br() .
+            lable('Disable search: ') .
+            checkbox(array(
+              'name' => 'hideSearch',
+              'checked' => hideSearch(),
             )) . br() .
             submit(array('value' => 'save', 'name' => 'save')) .
             $saved

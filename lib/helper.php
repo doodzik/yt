@@ -27,4 +27,8 @@ function hideNoise() {
   return array_key_exists('hideNoise', $_COOKIE) ? $_COOKIE['hideNoise'] : false;
 }
 
+function hideSearch() {
+  return array_key_exists('hideSearch', $_COOKIE) ? $_COOKIE['hideSearch'] : false;
+}
+
 ?>
