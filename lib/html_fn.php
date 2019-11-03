@@ -36,9 +36,17 @@
     foreach ($styles as $selector => $rules) {
       $rule_body = '';
       foreach ($rules as $rule => $rule_value) {
-        $rule_body .= "$rule:$rule_value;";
+        if (is_array($rule_value)) {
+          $rule_body_nested = '';
+          foreach ($rule_value as $rule_nested => $rule_value_nested) {
+            $rule_body_nested .= "$rule_nested:$rule_value_nested;";
+          }
+          $rule_body .= $rule. '{' . $rule_body_nested .'}';
+        } else {
+          $rule_body .= "$rule:$rule_value;";
+        }
       }
-      $rule_body = substr($rule_body, 0, -1);
+      $rule_body = rtrim($rule_body, ';');
       $content .= $selector. '{' . $rule_body .'}';
       $rule_body = '';
     }
@@ -93,7 +101,7 @@
   }
 
   function a ($content, $config = array('href' => '#')) {
-    $href = $config['href']; 
+    $href = $config['href'];
     return "<a href=\"$href\">$content</a>";
   }
 

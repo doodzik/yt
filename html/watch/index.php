@@ -69,7 +69,7 @@ if (playerSize() == 'fill') {
   );
 }
 
-$style = array(
+$style = array_merge_recursive($style, array(
   'body' => array(
     'width' => '100vw',
     'height' => '100vh',
@@ -78,7 +78,7 @@ $style = array(
   ),
   'iframe' => $player,
   '.container' => $container,
-);
+));
 
 echo html(array(
       'head' =>

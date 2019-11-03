@@ -1,13 +1,23 @@
 <?php
 $style = array(
+  '@media (prefers-color-scheme: light)' => array(
+    'body' => array(
+      'color'       => '#444',
+      'background'  => '#eee',
+    )
+  ),
+  '@media (prefers-color-scheme: dark)' => array(
+    'body' => array(
+      'color'       => '#FFFFFF',
+      'background'  => '#161716',
+    )
+  ),
   'body' => array(
     'margin'      => '40px auto',
     'max-width'   => '650px',
     'line-height' => '1.5',
     'font-size'   => '18px',
-    'color'       => '#444',
     'padding'     => '0 10px',
-    'background'  => '#eee',
     'text-align'  => 'center',
   ),
   'input, select' => array(
